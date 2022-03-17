@@ -6,16 +6,17 @@ function Add(props){
     const [magasin,setMagasin] = useState("");
     const [date,setDate] = useState("");
     const [montant,setMontant] = useState("");
+    const [categorie, setCategorie] = useState("");
 
 
 
     const insertData = () => {
-        fetch('http://10.1.55.148:55912/add', {
+        fetch('http://10.1.55.148:56671/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({magasin:magasin, date:date, montant:montant})
+            body: JSON.stringify({magasin:magasin, date:date, montant:montant, categorie:categorie})
         })
             .then(resp=>resp.json())
             .then(data=>{
@@ -36,6 +37,11 @@ function Add(props){
                 value = {date}
                 mode = "outlined"
                 onChangeText = {text => setDate(text)}/>
+            <TextInput
+                label = "Categorie"
+                value = {categorie}
+                mode = "outlined"
+                onChangeText = {text => setCategorie(text)}/>
             <TextInput
                 label = "Montant"
                 value = {montant}
