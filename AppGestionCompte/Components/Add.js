@@ -8,10 +8,8 @@ function Add(props){
     const [montant,setMontant] = useState("");
     const [categorie, setCategorie] = useState("");
 
-
-
     const insertData = () => {
-        fetch('http://10.1.55.148:56671/add', {
+        fetch('http://192.168.24.49:59276/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     card: {
         margin: 10,
         padding: 10,
-    }
+    },
 })
 
 export default Add;

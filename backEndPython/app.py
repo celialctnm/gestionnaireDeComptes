@@ -6,6 +6,8 @@ from flask_sqlalchemy import SQLAlchemy
 import datetime
 from flask_marshmallow import Marshmallow
 import pytesseract
+from sqlalchemy import create_engine, event, func
+import json
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://celia:03092002@localhost/Depenses'
@@ -13,6 +15,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
+
+db2 = create_engine('mysql+mysqldb://celia:03092002@localhost/Depenses')
 
 
 class Depenses(db.Model):
@@ -92,8 +96,8 @@ def delete_article(id):
 def get_img():
     pytesseract.pytesseract.tesseract_cmd = r'/usr/local/Cellar/tesseract/5.0.1/bin/tesseract'
     imgText = pytesseract.image_to_string('image.png')
-    #print(jsonify(imgText))
-    #reponse["imgText"] = imgText
+    # print(jsonify(imgText))
+    # reponse["imgText"] = imgText
     return jsonify(imgText)
 
 
@@ -123,6 +127,36 @@ def image():
         im = Image.open(BytesIO(base64.b64decode(reponse['byteImage'])))
         im.save('image.png', 'PNG')
         return reponse
+
+
+@app.route('/somme', methods=['GET'])
+def somme():
+    # Ajout des catégories dans un tableau
+    tab = []
+    depenses = Depenses.query.all()
+    for depense in depenses:
+        if depense.categorie not in tab:
+            tab.append(depense.categorie)
+
+    # Calculer les dépenses par catégorie
+    somme = []
+    dataDiagramme = []
+
+    for index in range(len(tab)):
+        somme.append(0)
+
+    for ticket in depenses:
+        for j in range(len(tab)):
+            if ticket.categorie == tab[j]:
+                somme[j] = somme[j] + ticket.montant
+
+    for i in range(len(tab)):
+        value = {
+            "categorie": tab[i],
+            "montant": somme[i],
+        }
+        dataDiagramme.append(value)
+    return jsonify(dataDiagramme)
 
 
 if __name__ == '__main__':
