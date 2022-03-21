@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Modifier from "./Components/Modifier";
 import Appareil from "./Components/Appareil";
+import Depenses from "./Components/Depenses";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ function App() {
         <Stack.Screen name="Ajouter" component={Add}/>
           <Stack.Screen name="Modifier" component={Modifier}/>
           <Stack.Screen name="Appareil" component={Appareil}/>
+          <Stack.Screen name="Depenses" component={Depenses}/>
       </Stack.Navigator>
     </View>
   );

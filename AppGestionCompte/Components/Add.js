@@ -9,7 +9,7 @@ function Add(props){
     const [categorie, setCategorie] = useState("");
 
     const insertData = () => {
-        fetch('http://192.168.24.49:59276/add', {
+        fetch('http://192.168.24.49:53703/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

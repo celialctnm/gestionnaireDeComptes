@@ -1,3 +1,4 @@
+import random
 from tkinter import Image
 
 from PIL import Image
@@ -152,8 +153,11 @@ def somme():
 
     for i in range(len(tab)):
         value = {
-            "categorie": tab[i],
+            "name": tab[i],
             "montant": somme[i],
+            "color": "rgba(" + str(random.randint(180, 256)) + "," + str(random.randint(100, 256)) + ", " + str(random.randint(155, 257)) + "," + str(1) + ")",
+            "legendFontColor": "#7F7F7F",
+            "legendFontSize": 14
         }
         dataDiagramme.append(value)
     return jsonify(dataDiagramme)

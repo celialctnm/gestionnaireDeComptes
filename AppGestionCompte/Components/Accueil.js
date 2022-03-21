@@ -111,36 +111,11 @@ function Accueil(props){
         }
     ];
 
-    const chartConfig = {
-        backgroundGradientFrom: "#1E2923",
-        backgroundGradientFromOpacity: 0,
-        backgroundGradientTo: "#08130D",
-        backgroundGradientToOpacity: 0.5,
-        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
-        strokeWidth: 2, // optional, default 3
-        barPercentage: 0.5,
-        useShadowColorFromDataset: false // optional
-    };
 
     return (
         <View style={styles.accueil}>
             <View>
                 <FlatList data={data} renderItem={({item}) => {return renderData(item)}} onRefresh={()=>loadData()} refreshing={loading} keyExtractor={item =>`${item.id}`}/>
-            </View>
-
-            <View>
-                <Text>Bezier Line Chart</Text>
-                <PieChart
-                    data={test}
-                    width={400}
-                    height={300}
-                    chartConfig={chartConfig}
-                    accessor={"population"}
-                    backgroundColor={"transparent"}
-                    paddingLeft={"15"}
-                    center={[10, 50]}
-                    absolute
-                />
             </View>
 
             <View>
@@ -154,6 +129,11 @@ function Accueil(props){
                     }
                             mode={"contained"}
                             onPress={()=> props.navigation.navigate("Appareil")}>Appareil</Button>
+                <Button style={
+                    {margin: 10, backgroundColor: '#f5bb57', width: 250}
+                }
+                        mode={"contained"}
+                        onPress={()=> { props.navigation.navigate("Depenses") }}>Graphique</Button>
             </View>
         </View>
 
