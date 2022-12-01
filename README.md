@@ -8,7 +8,7 @@ Il peut également rentrer manuellement, modifier et supprimer des tickets.
 ## Maintenance 
 Dans cette maintenance, j'ai voulu mettre en place un diagramme récapitulatif des dépenses en fonction de leur catégorie. 
 
-## Langages
+## Langage
 React Native et Python
 
 ## Module pour la maintenance 
