@@ -1,4 +1,4 @@
-# Application pour gérer ses comptes
+# Application mobile pour gérer ses comptes (IOS)
 
 ## Description
 Grâce à cette application, l'utilisateur peut prendre en photo un ticket de caisse et les données de ce dernier seront automatiquement sauvegardées dans l'application. 
